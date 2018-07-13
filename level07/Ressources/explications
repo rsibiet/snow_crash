@@ -1,0 +1,17 @@
+On a un binaire.
+Si on l'execute, il print le logname et quitte.
+
+ls -l montre qu'il appartient a flag07 et contient un setuid.
+
+strings level07:
+
+On remarque les lignes suivantes:
+LOGNAME
+/bin/echo %s
+
+Il fait donc un echo de la variable d'environnement 'LOGNAME'.
+
+Il suffit donc de mettre `getflag` dans cette variable:
+export LOGNAME=\`getflag\`
+
+puis d'executer le binaire.

@@ -1,0 +1,4 @@
+for i in ./toto/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+	done

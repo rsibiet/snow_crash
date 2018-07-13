@@ -1,0 +1,7 @@
+dans gdb getflag:
+
+set disassembly-flavor intel
+start
+disassemble
+
+jump *0x08048de5

@@ -1,0 +1,10 @@
+En faisant "ls -a", on remarque que level04.pl appartient a flag04.
+
+l'extention .pl s'ignifit qu'il s'agit d'un code ecrit en perl.
+En faisant un cat du fichier, on voit une fonction x avec le parametre "x"
+Cette fonction print `echo $y 2>&1` avec $y = $_[0] (donc x).
+Enfin, le fichier precise le localhost (4747).
+
+Pour obtenir le mot de passe du level05, il suffit de faire la commande curl suivante:
+curl localhost:4747?x=\`/bin/getflag\`
+

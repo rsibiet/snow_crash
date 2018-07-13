@@ -1,0 +1,21 @@
+On dispose d'un fichier token et d'un binaire qui appartiennemt a flag08.
+
+./level08 token
+You may not access 'token'
+
+echo "test" > /tmp/file ; ./level08 /tmp/file
+Resultat:
+test
+
+Le binaire lit donc le contenu du fichier passe en parametre.
+
+On fait un lien symbolique du token:
+
+ln -s ~/token /tmp/flag08 ; ./level08 /tmp/flag08
+
+On obtient le mot de passe de flag 08:
+f5eloekouj29ke0vouxean
+
+le mot de passe du level09 est:
+25749xKZ8L7DkSCwJkT9dyv6f
+

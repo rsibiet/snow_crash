@@ -1,0 +1,11 @@
+scp -P 4242 level02@172.16.220.130:./level02.pcap .
+
+------------------------
+
+Dans une vm, ouvrir le fichier avec Wireshark.
+Dans la fenetre du haut, click droit --> suivre --> flux TCP.
+Mettre au format UTF-8
+
+faire un copier coller du password (ligne "Password: " "dans le terminal.
+On obtient le mot de passe de flag02:
+ft_waNDReL0L

